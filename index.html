@@ -3,13 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
+  <style>
+    body {
+      text-align: center;
+    }
+    select {
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
 </head>
 <body>
-  <select name="" id="x-axis">
-    <option value="daysOpen">Days Open</option>
-    <option value="maxTheaters">Max. Theaters</option>
-    <option value="release">Release Date</option>
-  </select>
+  <svg></svg>
+  <div>
+    <p>x-axis values:</p>
+    <select name="" id="x-axis">
+      <option value="daysOpen">Days Open</option>
+      <option value="maxTheaters">Max. Theaters</option>
+      <option value="release">Release Date</option>
+    </select>
+  </div>
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="movies.js"></script>
   <script src="app.js"></script>
