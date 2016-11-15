@@ -276,11 +276,11 @@ As a result of this change, however, even more points get cut off from the edge 
 var padding = 10;
 
 var xScale = d3.scaleLinear()
-               .domain([0, 1000])
+               .domain([xMin, xMax])
                .range([padding, width - padding]);
 
 var yScale = d3.scaleLinear()
-               .domain([0, 500])
+               .domain([yMin, yMax])
                .range([height - padding, padding]); 
 ```
 
