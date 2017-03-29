@@ -170,6 +170,155 @@ This isn't how you should access bound data, it's just an example of how `d3`s i
 
 Append five quotes on the page so that each one has a different font size (the details of how you implement this are up to you!)
 
+## SVG
+
+SVG (short for Scalable Vector Graphics) is a way for us to draw images in the DOM. The use of vector graphics means that the images don't degrade in quality as you resize them (for more on vector graphics, Wikipedia offers a [nice starting point](https://en.wikipedia.org/wiki/Vector_graphics)). The [MDN docs](https://developer.mozilla.org/en-US/docs/Web/SVG) perhaps summarize it best: "SVG is essentially to graphics what HTML is to text.
+
+Important SVG elements that we'll be using:
+
+__circle__
+
+<svg height="220" width="220">
+<circle
+  cx=110
+  cy=110
+  r=100
+  stroke="#ff0000"
+  stroke-width="4"
+  fill='#0000ff'/>
+ </svg>
+
+```
+<svg height="220" width="220">
+  <circle
+   cx=110
+   cy=110
+   r=100
+   stroke="#ff0000"
+   stroke-width="4"
+   fill='#0000ff'/>
+ </svg>
+```
+
+__rect__
+
+
+<svg height="200" width="200">
+<rect
+  x=0
+  y=0
+  width=200
+  height=200
+  fill="#ffffff"
+  stroke="#000000"
+  stroke-width="4" />
+</svg>
+
+
+```
+<svg height="200" width="200">
+<rect
+  x=0
+  y=0
+  width=200
+  height=200
+  fill="#ffffff"
+  stroke="#000000"
+  stroke-width="4" />
+</svg>
+```
+
+__rect__ (rounded corners)
+
+<svg height="215" width="210">
+<rect
+  x=5
+  y=5
+  rx=35
+  ry=35
+  width=200
+  height=200
+  fill="#15Cf2A"
+  stroke="#000000"
+  stroke-width="4" />
+</svg>
+
+
+```
+<svg height="215" width="210">
+<rect
+  x=5
+  y=5
+  rx=35
+  ry=35
+  width=200
+  height=200
+  fill="#15Cf2A"
+  stroke="#000000"
+  stroke-width="4" />
+</svg>
+```
+
+__path__
+
+<svg height="175" width="350">
+<path
+  d="M160 5 L5 155 L310 150Z"
+  fill="rgb(10,180,190)"
+  stroke-width="5"
+  stroke="black" />
+</svg>
+
+```
+<svg height="175" width="350">
+<path
+  d="M160 5 L5 155 L310 150Z"
+  fill="rgb(0,255,0)"
+  stroke-width="5"
+  stroke="black" />
+</svg>
+```
+
+__g__ (group)
+
+The _g_ element is used to group other svg elements:
+
+<svg height="250" width="300">
+  <g stroke="black" stroke-width="3">
+    <circle cx=55 cy=55 r=50 fill="#006BB6"/>
+    <rect x=100 y=100 width=100 height=100 fill="#FDB927"/>
+  </g>
+</svg>
+
+```
+<svg height="250" width="300">
+  <g stroke="black" stroke-width="3">
+    <circle cx=55 cy=55 r=50 fill="#006BB6"/>
+    <rect x=100 y=100 width=100 height=100 fill="#FDB927"/>
+  </g>
+</svg>
+```
+
+
+__EXERCISE 2__
+
+Create an svg that has a triangle inside of a square inside of a circle.  Put all of those elements in a group with some shared properties on the group:
+
+
+<svg height="230" width="250">
+  <g stroke="black" stroke-width="1">
+    <circle cx=110 cy=110 r=100 fill="#006BB6"/>
+    <rect x=60 y=60 width=100 height=100 fill="#FDB927"/>
+        <path
+  d="M80 150 L80 80 L150 150Z"
+  fill="rgb(0,255,0)"
+  stroke="black" />
+  </g>
+</svg>
+
+
+For more information on SVGs, check out the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/SVG).
+
 ### Plotting Points to SVG: Attributes and Scales
 
 While you can absolutely use `d3` to manipulate HTML directly, when it comes to graphing, it's more common to see `d3` used to manipulate SVG elements. (This isn't a lesson on SVG, but if you'd like to learn more about the format, check the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/SVG).)
