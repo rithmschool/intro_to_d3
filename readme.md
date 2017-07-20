@@ -72,11 +72,11 @@ To start, let's create an array in the JavaScript console.
 
 ```js
 var quotes = [
-	"Go ahead, make my day.",
-	"I'll be back.",
-	"May the Force be with you.",
-	"There's no place like home.",
-	"You're gonna need a bigger boat."
+  "Go ahead, make my day.",
+  "I'll be back.",
+  "May the Force be with you.",
+  "There's no place like home.",
+  "You're gonna need a bigger boat."
 ];
 ```
 
@@ -122,20 +122,20 @@ Here's another example. Suppose our array of quotes looks like this:
 
 ```js
 var quotes = [{
-	quote: "Go ahead, make my day.",
-	color: "red"
+  quote: "Go ahead, make my day.",
+  color: "red"
 }, {
-	quote: "I'll be back.",
-	color: "orange"
+  quote: "I'll be back.",
+  color: "orange"
 }, {
-	quote: "May the Force be with you.",
-	color: "yellow"
+  quote: "May the Force be with you.",
+  color: "yellow"
 }, {
-	quote: "There's no place like home.",
-	color: "green"
+  quote: "There's no place like home.",
+  color: "green"
 }, {
-	quote: "You're gonna need a bigger boat.",
-	color: "blue"
+  quote: "You're gonna need a bigger boat.",
+  color: "blue"
 }];
 ```
 
@@ -304,7 +304,6 @@ __EXERCISE 2__
 
 Create an svg that has a triangle inside of a square inside of a circle.  Put all of those elements in a group with some shared properties on the group:
 
-
 <svg height="230" width="250">
   <g stroke="black" stroke-width="1">
     <circle cx=110 cy=110 r=100 fill="#006BB6"/>
@@ -315,7 +314,6 @@ Create an svg that has a triangle inside of a square inside of a circle.  Put al
   stroke="black" />
   </g>
 </svg>
-
 
 For more information on SVGs, check out the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/SVG).
 
@@ -336,7 +334,7 @@ var svg = d3.select("svg")
             .attr("width", width)
             .attr("height", height);
 
-var data = [[250, 250]];
+var data = [ [250, 250] ];
 
 svg.selectAll('circle')
   .data(data)
@@ -352,7 +350,7 @@ If you refresh the page, you should see a black dot in the center of the svg! By
 Let's add some more coordinates to the `data` array. 
 
 ```js
-var data = [[250, 250], [0, 0], [100, 150], [400, 200], [700, 250]];
+var data = [ [250, 250], [0, 0], [100, 150], [400, 200], [700, 250] ];
 ```
 
 When you refresh the page, there may be a few things that surprise you. Here are some things to observe:
@@ -506,7 +504,7 @@ Our color scale converts freshness ratings to colors: a movie with 0% freshness 
 Next, let's dynamically adjust the radius. In the original GIF, the radius was proportional to a film's total, divided by its opening weekend total. So let's change the line impacting the `r` attribute as follows:
 
 ```js
-	.attr('r', function(d) { return 5 * d.total / d.openingTotal; })
+  .attr('r', function(d) { return 5 * d.total / d.openingTotal; })
 ```
 
 You may also need to adjust the padding variable.
