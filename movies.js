@@ -1,203 +1,201 @@
 var movies = [{
-  title: "Finding Dory",
-  release: new Date("June 17 2016"),
-  rating: "PG",
-  runtime: 103,
-  total: 485501100/1e6,
-  openingTotal: 135060273/1e6,
-  maxTheaters: 4305,
-  daysOpen: 130,
-  freshness: 0.94
-}, {
-  title: "Captain America: Civil War",
-  release: new Date("May 6 2016"),
+  title: "Wonder Woman",
+  release: new Date("June 2 2017"),
   rating: "PG-13",
-  runtime: 147,
-  total: 408084349/1e6,
-  openingTotal: 179139142/1e6,
-  maxTheaters: 4226,
+  runtime: 141,
+  total: 412563408,
+  openingTotal: 103251471,
+  maxTheaters: 4165,
+  daysOpen: 161,
+  freshness: 0.92
+}, {
+  title: "Guardians of the Galaxy Vol. 2",
+  release: new Date("May 5 2017"),
+  rating: "PG-13",
+  runtime: 137,
+  total: 389813101,
+  openingTotal: 146510104,
+  maxTheaters: 4347,
   daysOpen: 140,
-  freshness: 0.90
-}, {
-  title: "The Secret Life of Pets",
-  release: new Date("July 8 2016"),
-  rating: "PG",
-  runtime: 90,
-  total: 366201540/1e6,
-  openingTotal: 104352905/1e6,
-  maxTheaters: 4381,
-  daysOpen: 109,
-  freshness: 0.75
-}, {
-  title: "Suicide Squad",
-  release: new Date("August 5 2016"),
-  rating: "PG-13",
-  runtime: 130,
-  total: 324302274/1e6,
-  openingTotal: 133682248/1e6,
-  maxTheaters: 4255,
-  daysOpen: 81,
-  freshness: 0.26
-}, {
-  title: "Jason Bourne",
-  release: new Date("July 29 2016"),
-  rating: "PG-13",
-  runtime: 123,
-  total: 162169190/1e6,
-  openingTotal: 59215365/1e6,
-  maxTheaters: 4039,
-  daysOpen: 88,
-  freshness: 0.56
-}, {
-  title: "Star Trek Beyond",
-  release: new Date("July 22 2016"),
-  rating: "PG-13",
-  runtime: 120,
-  total: 158848340/1e6,
-  openingTotal: 59253211/1e6,
-  maxTheaters: 3928,
-  daysOpen: 91,
-  freshness: 0.84
-}, {
-  title: "X-Men: Apocalypse",
-  release: new Date("May 27 2016"),
-  rating: "PG-13",
-  runtime: 143,
-  total: 155442489/1e6,
-  openingTotal: 65769562/1e6,
-  maxTheaters: 4153,
-  daysOpen: 63,
-  freshness: 0.48
-}, {
-  title: "Ghostbusters",
-  release: new Date("July 15 2016"),
-  rating: "PG-13",
-  runtime: 108,
-  total: 128254492/1e6,
-  openingTotal: 46018755/1e6,
-  maxTheaters: 3963,
-  daysOpen: 101,
-  freshness: 0.72
-}, {
-  title: "Central Intelligence",
-  release: new Date("June 17 2016"),
-  rating: "PG-13",
-  runtime: 107,
-  total: 127440871/1e6,
-  openingTotal: 35535250/1e6,
-  maxTheaters: 3508,
-  daysOpen: 77,
-  freshness: 0.69
-}, {
-  title: "The Legend of Tarzan",
-  release: new Date("July 1 2016"),
-  rating: "PG-13",
-  runtime: 109,
-  total: 126643061/1e6,
-  openingTotal: 38527856/1e6,
-  maxTheaters: 3591,
-  daysOpen: 77,
-  freshness: 0.36
-}, {
-  title: "Bad Moms",
-  release: new Date("July 29 2016"),
-  rating: "R",
-  runtime: 101,
-  total: 113226532/1e6,
-  openingTotal: 23817340/1e6,
-  maxTheaters: 3215,
-  daysOpen: 88,
-  freshness: 0.60
-}, {
-  title: "The Angry Birds Movie",
-  release: new Date("May 20 2016"),
-  rating: "PG",
-  runtime: 97,
-  total: 107509366/1e6,
-  openingTotal: 38155177/1e6,
-  maxTheaters: 3932,
-  daysOpen: 119,
-  freshness: 0.43
-}, {
-  title: "Independence Day: Resurgence",
-  release: new Date("June 24 2016"),
-  rating: "PG-13",
-  runtime: 120,
-  total: 103144286/1e6,
-  openingTotal: 41039944/1e6,
-  maxTheaters: 4130,
-  daysOpen: 84,
-  freshness: 0.31
-}, {
-  title: "The Conjuring 2",
-  release: new Date("June 10 2016"),
-  rating: "R",
-  runtime: 134,
-  total: 102470008/1e6,
-  openingTotal: 40406314/1e6,
-  maxTheaters: 3356,
-  daysOpen: 77,
-  freshness: 0.80
-}, {
-  title: "Sausage Party",
-  release: new Date("August 12 2016"),
-  rating: "R",
-  runtime: 89,
-  total: 97636799/1e6,
-  openingTotal: 34263534/1e6,
-  maxTheaters: 3135,
-  daysOpen: 73,
   freshness: 0.83
 }, {
-  title: "Don't Breathe",
-  release: new Date("August 26 2016"),
-  rating: "R",
-  runtime: 88,
-  total: 88577905/1e6,
-  openingTotal: 26411706/1e6,
-  maxTheaters: 3384,
-  daysOpen: 59,
-  freshness: 0.87
-}, {
-  title: "Teenage Mutant Ninja Turtles: Out of the Shadows",
-  release: new Date("June 3 2016"),
+  title: "Spider-Man: Homecoming",
+  release: new Date("July 7 2017"),
   rating: "PG-13",
-  runtime: 112,
-  total: 82051601/1e6,
-  openingTotal: 35316382/1e6,
-  maxTheaters: 4071,
-  daysOpen: 98,
-  freshness: 0.38
+  runtime: 133,
+  total: 334201140,
+  openingTotal: 117027503,
+  maxTheaters: 4348,
+  daysOpen: 147,
+  freshness: 0.92
 }, {
-  title: "The Purge: Election Year",
-  release: new Date("July 1 2016"),
-  rating: "R",
-  runtime: 105,
-  total: 79042440/1e6,
-  openingTotal: 31515110/1e6,
-  maxTheaters: 2821,
-  daysOpen: 49,
-  freshness: 0.55
-}, {
-  title: "Alice Through the Looking Glass",
-  release: new Date("May 27 2016"),
+  title: "Despicable Me 3",
+  release: new Date("June 30 2017"),
   rating: "PG",
-  runtime: 112,
-  total: 77041381/1e6,
-  openingTotal: 26858726/1e6,
-  maxTheaters: 3763,
-  daysOpen: 98,
+  runtime: 90,
+  total: 264624300,
+  openingTotal: 72434025,
+  maxTheaters: 4535,
+  daysOpen: 175,
+  freshness: 0.60
+}, {
+  title: "Dunkirk",
+  release: new Date("July 21 2017"),
+  rating: "PG-13",
+  runtime: 106,
+  total: 188045546,
+  openingTotal: 50513488,
+  maxTheaters: 4014,
+  daysOpen: 126,
+  freshness: 0.92
+}, {
+  title: "Pirates of the Caribbean: Dead Men Tell No Tales",
+  release: new Date("May 26 2017"),
+  rating: "PG-13",
+  runtime: 129,
+  total: 172558876,
+  openingTotal: 62983253,
+  maxTheaters: 4276,
+  daysOpen: 119,
   freshness: 0.30
 }, {
-  title: "Pete's Dragon",
-  release: new Date("August 12 2016"),
-  rating: "PG",
+  title: "Cars 3",
+  release: new Date("June 16 2017"),
+  rating: "G",
   runtime: 102,
-  total: 75335573/1e6,
-  openingTotal: 21514095/1e6,
-  maxTheaters: 3702,
-  daysOpen: 74,
+  total: 152901115,
+  openingTotal: 53688680,
+  maxTheaters: 4256,
+  daysOpen: 140,
+  freshness: 0.68
+}, {
+  title: "War for the Planet of the Apes",
+  release: new Date("July 14 2017"),
+  rating: "PG-13",
+  runtime: 140,
+  total: 146880162,
+  openingTotal: 56262929,
+  maxTheaters: 4100,
+  daysOpen: 140,
+  freshness: 0.93
+}, {
+  title: "Transformers: The Last Knight",
+  release: new Date("June 21 2017"),
+  rating: "PG-13",
+  runtime: 149,
+  total: 130168683,
+  openingTotal: 44680073,
+  maxTheaters: 4132,
+  daysOpen: 65,
+  freshness: 0.16
+}, {
+  title: "Girls Trip",
+  release: new Date("July 21 2017"),
+  rating: "R",
+  runtime: 122,
+  total: 115171585,
+  openingTotal: 31201920,
+  maxTheaters: 2648,
+  daysOpen: 91,
+  freshness: 0.90
+}, {
+  title: "Baby Driver",
+  release: new Date("June 28 2017"),
+  rating: "R",
+  runtime: 112,
+  total: 107825862,
+  openingTotal: 20553320,
+  maxTheaters: 3226,
+  daysOpen: 114,
+  freshness: 0.93
+}, {
+  title: "Annabelle: Creation",
+  release: new Date("August 11 2017"),
+  rating: "R",
+  runtime: 109,
+  total: 102092201,
+  openingTotal: 35006404,
+  maxTheaters: 3565,
+  daysOpen: 84,
+  freshness: 0.69
+}, {
+  title: "The Emoji Movie",
+  release: new Date("July 28 2017"),
+  rating: "PG",
+  runtime: 96,
+  total: 86089513,
+  openingTotal: 24531923,
+  maxTheaters: 4075,
+  daysOpen: 126,
+  freshness: 0.09
+}, {
+  title: "The Mummy (2017)",
+  release: new Date("June 9 2017"),
+  rating: "PG-13",
+  runtime: 107,
+  total: 80227895,
+  openingTotal: 31688375,
+  maxTheaters: 4035,
+  daysOpen: 77,
+  freshness: 0.16
+}, {
+  title: "The Hitman's Bodyguard",
+  release: new Date("August 18 2017"),
+  rating: "R",
+  runtime: 118,
+  total: 75468583,
+  openingTotal: 21384504,
+  maxTheaters: 3377,
+  daysOpen: 77,
+  freshness: 0.40
+}, {
+  title: "Alien: Covenant",
+  release: new Date("May 19 2017"),
+  rating: "R",
+  runtime: 122,
+  total: 74262031,
+  openingTotal: 36160621,
+  maxTheaters: 3772,
+  daysOpen: 105,
+  freshness: 0.68
+}, {
+  title: "Captain Underpants: The First Epic Movie",
+  release: new Date("June 2 2017"),
+  rating: "PG",
+  runtime: 89,
+  total: 73921000,
+  openingTotal: 23851539,
+  maxTheaters: 3529,
+  daysOpen: 161,
   freshness: 0.86
-}].sort(function(m1,m2) {
-  return m2.total / m2.openingTotal - m1.total / m1.openingTotal;
-});
+}, {
+  title: "Baywatch",
+  release: new Date("May 25 2017"),
+  rating: "R",
+  runtime: 116,
+  total: 58060186,
+  openingTotal: 18503871,
+  maxTheaters: 3647,
+  daysOpen: 64,
+  freshness: 0.18
+}, {
+  title: "Atomic Blonde",
+  release: new Date("July 28 2017"),
+  rating: "R",
+  runtime: 115,
+  total: 51687870,
+  openingTotal: 18286420,
+  maxTheaters: 3326,
+  daysOpen: 70,
+  freshness: 0.77
+}, {
+  title: "The Dark Tower",
+  release: new Date("August 4 2017"),
+  rating: "PG-13",
+  runtime: 95,
+  total: 50701325,
+  openingTotal: 19153698,
+  maxTheaters: 3451,
+  daysOpen: 77,
+  freshness: 0.16
+}];
