@@ -13,7 +13,7 @@ By the end of this tutorial, you should be able to:
 
 ### The Goal
 
-In this tutorial, we'll work on building a graph of data involving movies that were released in the summer of 2016. Here's an image showcasing the functionality:
+In this tutorial, we'll work on building a graph of data involving movies that were released in the summer of 2017. Here's an image showcasing the functionality:
 
 ![d3 movie scatterplot graph](./images/d3.gif)
 
@@ -51,7 +51,7 @@ To begin, let's open up the `index.html` page in Google Chrome. The starter HTML
 </head>
 <body>
   <svg></svg>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://d3js.org/d3.v4.js"></script>
   <script src="movies.js"></script>
   <script src="app.js"></script>
 </body>
@@ -63,7 +63,7 @@ To begin, let's open up the `index.html` page in Google Chrome. The starter HTML
 Once you've opened up the page in Chrome, hit `Command + Shift + J` (on a Mac) to open up the Chrome console. Since we've loaded `d3`, we should have access to it on the page! Try this out by typing `d3` in the console and hitting enter. You should see the following:
 
 ```js
-Object {event: null, version: "4.3.0", symbols: Array[7], symbolCircle: Object, symbolCross: Object…}
+{event: null, format: ƒ, formatPrefix: ƒ, timeFormat: ƒ, timeParse: ƒ, …}
 ```
 
 So, how can we use `d3` to bind data to elements on the page? Let's take a look at a quick example.
@@ -72,11 +72,11 @@ To start, let's create an array in the JavaScript console.
 
 ```js
 var quotes = [
-	"Go ahead, make my day.",
-	"I'll be back.",
-	"May the Force be with you.",
-	"There's no place like home.",
-	"You're gonna need a bigger boat."
+  "Go ahead, make my day.",
+  "I'll be back.",
+  "May the Force be with you.",
+  "There's no place like home.",
+  "You're gonna need a bigger boat."
 ];
 ```
 
@@ -122,20 +122,20 @@ Here's another example. Suppose our array of quotes looks like this:
 
 ```js
 var quotes = [{
-	quote: "Go ahead, make my day.",
-	color: "red"
+  quote: "Go ahead, make my day.",
+  color: "red"
 }, {
-	quote: "I'll be back.",
-	color: "orange"
+  quote: "I'll be back.",
+  color: "orange"
 }, {
-	quote: "May the Force be with you.",
-	color: "yellow"
+  quote: "May the Force be with you.",
+  color: "yellow"
 }, {
-	quote: "There's no place like home.",
-	color: "green"
+  quote: "There's no place like home.",
+  color: "green"
 }, {
-	quote: "You're gonna need a bigger boat.",
-	color: "blue"
+  quote: "You're gonna need a bigger boat.",
+  color: "blue"
 }];
 ```
 
@@ -170,6 +170,100 @@ This isn't how you should access bound data, it's just an example of how `d3`s i
 
 Append five quotes on the page so that each one has a different font size (the details of how you implement this are up to you!)
 
+## SVG
+
+SVG (short for Scalable Vector Graphics) is a way for us to draw images in the DOM. The use of vector graphics means that the images don't degrade in quality as you resize them (for more on vector graphics, Wikipedia offers a [nice starting point](https://en.wikipedia.org/wiki/Vector_graphics)). The [MDN docs](https://developer.mozilla.org/en-US/docs/Web/SVG) perhaps summarize it best: "SVG is essentially to graphics what HTML is to text.
+
+Important SVG elements that we'll be using:
+
+__circle__
+
+```
+<svg height="220" width="220">
+  <circle
+   cx=110
+   cy=110
+   r=100
+   stroke="#ff0000"
+   stroke-width="4"
+   fill='#0000ff'/>
+ </svg>
+```
+
+__rect__
+
+```
+<svg height="200" width="200">
+<rect
+  x=0
+  y=0
+  width=200
+  height=200
+  fill="#ffffff"
+  stroke="#000000"
+  stroke-width="4" />
+</svg>
+```
+
+__rect__ (rounded corners)
+
+```
+<svg height="215" width="210">
+<rect
+  x=5
+  y=5
+  rx=35
+  ry=35
+  width=200
+  height=200
+  fill="#15Cf2A"
+  stroke="#000000"
+  stroke-width="4" />
+</svg>
+```
+
+__path__
+
+```
+<svg height="175" width="350">
+<path
+  d="M160 5 L5 155 L310 150Z"
+  fill="rgb(0,255,0)"
+  stroke-width="5"
+  stroke="black" />
+</svg>
+```
+
+__g__ (group)
+
+The _g_ element is used to group other svg elements:
+
+```
+<svg height="250" width="300">
+  <g stroke="black" stroke-width="3">
+    <circle cx=55 cy=55 r=50 fill="#006BB6"/>
+    <rect x=100 y=100 width=100 height=100 fill="#FDB927"/>
+  </g>
+</svg>
+```
+
+#### Exercise
+
+Create an svg that has a triangle inside of a square inside of a circle.  Put all of those elements in a group with some shared properties on the group.
+
+<svg height="230" width="250">
+  <g stroke="black" stroke-width="1">
+    <circle cx=110 cy=110 r=100 fill="#006BB6"/>
+    <rect x=60 y=60 width=100 height=100 fill="#FDB927"/>
+        <path
+  d="M80 150 L80 80 L150 150Z"
+  fill="rgb(0,255,0)"
+  stroke="black" />
+  </g>
+</svg>
+
+For more information on SVGs, check out the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/SVG).
+
 ### Plotting Points to SVG: Attributes and Scales
 
 While you can absolutely use `d3` to manipulate HTML directly, when it comes to graphing, it's more common to see `d3` used to manipulate SVG elements. (This isn't a lesson on SVG, but if you'd like to learn more about the format, check the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/SVG).)
@@ -187,15 +281,15 @@ var svg = d3.select("svg")
             .attr("width", width)
             .attr("height", height);
 
-var data = [[250, 250]];
+var data = [ [250, 250] ];
 
 svg.selectAll('circle')
   .data(data)
   .enter()
   .append('circle')
-  .attr('cx', function(d) { return d[0]; })
-  .attr('cy', function(d) { return d[1]; })
-  .attr('r', function() { return 10; });
+    .attr('cx', function(d) { return d[0]; })
+    .attr('cy', function(d) { return d[1]; })
+    .attr('r', function() { return 10; });
 ```
 
 If you refresh the page, you should see a black dot in the center of the svg! By default, the dots will have a black fill (we'll learn how to customize this later).
@@ -203,7 +297,7 @@ If you refresh the page, you should see a black dot in the center of the svg! By
 Let's add some more coordinates to the `data` array. 
 
 ```js
-var data = [[250, 250], [0, 0], [100, 150], [400, 200], [700, 250]];
+var data = [ [250, 250], [0, 0], [100, 150], [400, 200], [700, 250] ];
 ```
 
 When you refresh the page, there may be a few things that surprise you. Here are some things to observe:
@@ -220,12 +314,12 @@ To specify a scale, you need to specify a domain and a range. `d3` will then tak
 
 ```js
 var xScale = d3.scaleLinear()
-               .domain([0, 1000])
-               .range([0, width]);
+  .domain([0, 1000])
+  .range([0, width]);
 
 var yScale = d3.scaleLinear()
-               .domain([0, 500])
-               .range([height, 0]);  
+  .domain([0, 500])
+  .range([height, 0]);  
 ```
 
 Note that `xScale` maps `[0, 1000]` to `[0, width]`, but `yScale` maps `[0, 500]` to `[height, 0`]; in particular, 0 gets mapped to 0 for the `x` scale, but to `height` for the `y` scale. This has the effect of flipping the coordinates so that (0, 0) is in the lower-left corner of the svg, which is the common orientation in math and makes plotting points a bit more straightforward.
@@ -237,9 +331,9 @@ svg.selectAll('circle')
   .data(data)
   .enter()
   .append('circle')
-  .attr('cx', function(d) { return xScale(d[0]); })
-  .attr('cy', function(d) { return yScale(d[1]); })
-  .attr('r', function() { return 10; });
+    .attr('cx', function(d) { return xScale(d[0]); })
+    .attr('cy', function(d) { return yScale(d[1]); })
+    .attr('r', function() { return 10; });
 ```
 
 Notice that with these adjustments, all five points are visible on the svg. However, we're assuming that all points will have an x coordinate between 0 and 1000, and a y coordinate between 0 and 500. This may not be true, especially if we're planning on adding data later on. A better approach would be to base the domains on the max and min of our data set. Thankfully, `d3` has us covered here too: it has built-in max and min functions. So we can rewrite our scales as follows:
@@ -276,11 +370,11 @@ As a result of this change, however, even more points get cut off from the edge 
 var padding = 10;
 
 var xScale = d3.scaleLinear()
-               .domain([0, 1000])
+               .domain([xMin, xMax])
                .range([padding, width - padding]);
 
 var yScale = d3.scaleLinear()
-               .domain([0, 500])
+               .domain([yMin, yMax])
                .range([height - padding, padding]); 
 ```
 
@@ -288,7 +382,7 @@ Things should look better now. Let's explore some more interesting data.
 
 ### Plotting Our Movie Data
 
-As you may have already noticed, we've got a second JavaScript file with data on movies released in the summer of 2016. Let's explore this data; we've already got the building blocks to create some visualizations.
+As you may have already noticed, we've got a second JavaScript file with data on movies released in the summer of 2017. Let's explore this data; we've already got the building blocks to create some visualizations.
 
 To begin, let's replace our array of coordinates by just setting `data` equal to the `movies` array from the other JavaScript file:
 
@@ -329,9 +423,9 @@ svg.selectAll('circle')
   .data(data)
   .enter()
   .append('circle')
-  .attr('cx', function(d) { return xScale(d.daysOpen); })
-  .attr('cy', function(d) { return yScale(d.total); })
-  .attr('r', function() { return 10; });
+    .attr('cx', function(d) { return xScale(d.daysOpen); })
+    .attr('cy', function(d) { return yScale(d.total); })
+    .attr('r', function() { return 10; });
 ```
 
 So far so good. Now let's adjust the color of each dot based on its freshness. We can actually do this by creating another scale!
@@ -339,7 +433,7 @@ So far so good. Now let's adjust the color of each dot based on its freshness. W
 ```js
 var colorScale = d3.scaleLinear()
                    .domain([0,1])
-                   .range(['red', 'green']);
+                   .range(['green', 'red']);
                    
 svg.selectAll('circle')
   .data(data)
@@ -352,12 +446,12 @@ svg.selectAll('circle')
   .attr('stroke', 'black');
 ```
 
-Our color scale converts freshness ratings to colors: a movie with 0% freshness will be red, a movie with 100% freshness will be green, and anything in between will be colored accordingly. The `fill` attribute determines the color of the circle, while the `stroke` attribute determines the color of its outline.
+Our color scale converts freshness ratings to colors: a movie with 0% freshness will be green, a movie with 100% freshness will be red, and anything in between will be colored accordingly. The `fill` attribute determines the color of the circle, while the `stroke` attribute determines the color of its outline.
 
 Next, let's dynamically adjust the radius. In the original GIF, the radius was proportional to a film's total, divided by its opening weekend total. So let's change the line impacting the `r` attribute as follows:
 
 ```js
-	.attr('r', function(d) { return 5 * d.total / d.openingTotal; })
+  .attr('r', function(d) { return 5 * d.total / d.openingTotal; })
 ```
 
 You may also need to adjust the padding variable.
