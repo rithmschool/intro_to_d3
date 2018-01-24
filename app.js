@@ -63,7 +63,7 @@ svg.selectAll("circle")
     return colorScale(d.freshness);
   })
   .attr('stroke', 'black')
-  .on("mouseenter", function(d) {
+  .on("mousemove", function(d) {
     tooltip.text(d.title)
            .style("opacity", 1)
            .style("left", d3.event.pageX + "px")
