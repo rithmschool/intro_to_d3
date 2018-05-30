@@ -6,10 +6,10 @@
 
 By the end of this tutorial, you should be able to:
 
-- Bind data to elements (including elements that aren't on the page yet!)
-- Append new elements in the page that are tied to data
-- Scale your data to fit on the page
-- Create a scatterplot using `d3`
+* Bind data to elements (including elements that aren't on the page yet!)
+* Append new elements in the page that are tied to data
+* Scale your data to fit on the page
+* Create a scatterplot using `d3`
 
 ### The Goal
 
@@ -19,15 +19,15 @@ In this tutorial, we'll work on building a graph of data involving movies that w
 
 Each dot on the graph represents a single movie. Here are some of the important features of the graph:
 
-1. The color of each dot corresponds to its quality (as measured by its Rotten Tomatoes freshness score)
-2. The size of each point represents the [multiplier](http://www.the-numbers.com/glossary.php) for the film. A film's multiplier is its total gross divided by its opening weekend gross; the higher the multiplier (i.e. the larger the dot), the greater its longevity. 
-2. The vertical placement of the point corresponds to how much money the film made (in millions of dollars).
-3. By default, the horizontal placement of the dot corresponds to how long the film was in theaters (in days). 
-4. All data is scaled so that it fits in the graph space.
-5. There are horizontal and vertical axes to help label the data. (**Note:** we won't cover this, we'll leave it as a bonus).
-6. Hovering over a dot reveals the film it represents. (**Note:** we won't cover this, we'll leave it as a bonus).
-7. You can change the x-axis values of the dots using a dropdown (**Note:** we won't cover this, we'll leave it as a bonus).
-8. When you update the x-axis, the dots transition smoothly (**Note:** we won't cover this, we'll leave it as a bonus).
+1.  The color of each dot corresponds to its quality (as measured by its Rotten Tomatoes freshness score)
+2.  The size of each point represents the size of the theatrical release; the larger the dot, the more theaters the film played in.
+3.  The vertical placement of the point corresponds to how much money the film made (in millions of dollars).
+4.  By default, the horizontal placement of the dot corresponds to how long the film was in theaters (in days).
+5.  All data is scaled so that it fits in the graph space.
+6.  There are horizontal and vertical axes to help label the data. (**Note:** we won't cover this, we'll leave it as a bonus).
+7.  Hovering over a dot reveals the film it represents. (**Note:** we won't cover this, we'll leave it as a bonus).
+8.  You can change the x-axis values of the dots using a dropdown (**Note:** we won't cover this, we'll leave it as a bonus).
+9.  When you update the x-axis, the dots transition smoothly (**Note:** we won't cover this, we'll leave it as a bonus).
 
 That's a lot of functionality to cover, so let's get to it!
 
@@ -83,7 +83,8 @@ var quotes = [
 Now let's add these quotes to the page. Here's one way you could do that in `d3`:
 
 ```js
-d3.select("body")
+d3
+  .select("body")
   .selectAll("p")
   .data(quotes)
   .enter()
@@ -101,48 +102,54 @@ We're first selecting the `body` tag in HTML using `d3`. Similar to `jQuery` or 
 
 After we select the `body` tag we call `.selectAll("p")` on the selection. This seems like a strange thing to do; after all, there aren't any `p` tags on the page! Shouldn't this result in some kind of empty selection, or maybe even `null`?
 
-While the syntax may look strange, this is a very common pattern in `d3`. You can think of the expression 
+While the syntax may look strange, this is a very common pattern in `d3`. You can think of the expression
 
 ```js
-d3.select("body")
-  .selectAll("p")
+d3.select("body").selectAll("p");
 ```
 
 as a sort of placeholder for the paragraph tags that we're about to create.
 
 The next line is where the binding takes place. The `data` method is probably the most important method in all of `d3`. The `data` method is responsible for _joining_ an array of data to a collection of elements in the document (in this case, a collection of HTML `p` tags).
 
-In the event that there's more data in the array than elements on the page, `d3` creates what's called an `enter` selection. As described in the `d3` [docs](https://github.com/d3/d3-selection/blob/master/README.md#selection_enter), the enter selection is essentially a "placeholder nodes for each datum that had no corresponding DOM element in the selection," and "is typically used to create 'missing' elements corresponding to new data." To access this selection, we call the `enter` method. We can then append these nodes into our document. 
+In the event that there's more data in the array than elements on the page, `d3` creates what's called an `enter` selection. As described in the `d3` [docs](https://github.com/d3/d3-selection/blob/master/README.md#selection_enter), the enter selection is essentially a "placeholder nodes for each datum that had no corresponding DOM element in the selection," and "is typically used to create 'missing' elements corresponding to new data." To access this selection, we call the `enter` method. We can then append these nodes into our document.
 
-This is what's happening in the next line, when we call `.append("p")`. We are taking our selection of elements bound to our quote data, and appending them to the page. 
+This is what's happening in the next line, when we call `.append("p")`. We are taking our selection of elements bound to our quote data, and appending them to the page.
 
 The last thing we do is call the `text` method. What's going on here? It seems that we're passing a function into this method, which takes a parameter `d`. This is another common `d3` pattern: in this instance, passing in a function to `text` has the effect of running that function on every item in the array of data. In the above example, the function doesn't too much: it just returns the current quote (represented by the variable `d`). What happens if you `return d[0]` instead? Or `d.toUpperCase()`?
 
 Here's another example. Suppose our array of quotes looks like this:
 
 ```js
-var quotes = [{
-  quote: "Go ahead, make my day.",
-  color: "red"
-}, {
-  quote: "I'll be back.",
-  color: "orange"
-}, {
-  quote: "May the Force be with you.",
-  color: "yellow"
-}, {
-  quote: "There's no place like home.",
-  color: "green"
-}, {
-  quote: "You're gonna need a bigger boat.",
-  color: "blue"
-}];
+var quotes = [
+  {
+    quote: "Go ahead, make my day.",
+    color: "red"
+  },
+  {
+    quote: "I'll be back.",
+    color: "orange"
+  },
+  {
+    quote: "May the Force be with you.",
+    color: "yellow"
+  },
+  {
+    quote: "There's no place like home.",
+    color: "green"
+  },
+  {
+    quote: "You're gonna need a bigger boat.",
+    color: "blue"
+  }
+];
 ```
 
 We can then append these quotes to the page and account for their colors like so:
 
 ```js
-d3.select("body")
+d3
+  .select("body")
   .selectAll("p")
   .data(quotes)
   .enter()
@@ -150,14 +157,14 @@ d3.select("body")
   .text(function(d) {
     return d.quote;
   })
-  .style('color', function(d) {
+  .style("color", function(d) {
     return d.color;
   });
 ```
 
 Just like we can manipulate the text itself using the bound data, we can also manipulate css properties!
 
-Note that you can always see what data is bound to an element by accessing the element's `__data__` property, which is set by `d3`. If you've got quotes with different colors on the page, you should be able to reproduce the following:  
+Note that you can always see what data is bound to an element by accessing the element's `__data__` property, which is set by `d3`. If you've got quotes with different colors on the page, you should be able to reproduce the following:
 
 ```js
 var firstQuote = document.querySelector("p");
@@ -176,7 +183,7 @@ SVG (short for Scalable Vector Graphics) is a way for us to draw images in the D
 
 Important SVG elements that we'll be using:
 
-__circle__
+**circle**
 
 ```
 <svg height="220" width="220">
@@ -190,7 +197,7 @@ __circle__
  </svg>
 ```
 
-__rect__
+**rect**
 
 ```
 <svg height="200" width="200">
@@ -205,7 +212,7 @@ __rect__
 </svg>
 ```
 
-__rect__ (rounded corners)
+**rect** (rounded corners)
 
 ```
 <svg height="215" width="210">
@@ -222,7 +229,7 @@ __rect__ (rounded corners)
 </svg>
 ```
 
-__path__
+**path**
 
 ```
 <svg height="175" width="350">
@@ -234,7 +241,7 @@ __path__
 </svg>
 ```
 
-__g__ (group)
+**g** (group)
 
 The _g_ element is used to group other svg elements:
 
@@ -249,7 +256,7 @@ The _g_ element is used to group other svg elements:
 
 #### Exercise
 
-Create an svg that has a triangle inside of a square inside of a circle.  Put all of those elements in a group with some shared properties on the group.
+Create an svg that has a triangle inside of a square inside of a circle. Put all of those elements in a group with some shared properties on the group.
 
 <svg height="230" width="250">
   <g stroke="black" stroke-width="1">
@@ -277,34 +284,42 @@ Let's open up our `app.js` and write some JavaScript. First we'll change the def
 ```js
 var width = 500;
 var height = 500;
-var svg = d3.select("svg")
-            .attr("width", width)
-            .attr("height", height);
+var svg = d3
+  .select("svg")
+  .attr("width", width)
+  .attr("height", height);
 
-var data = [ [250, 250] ];
+var data = [[250, 250]];
 
-svg.selectAll('circle')
+svg
+  .selectAll("circle")
   .data(data)
   .enter()
-  .append('circle')
-    .attr('cx', function(d) { return d[0]; })
-    .attr('cy', function(d) { return d[1]; })
-    .attr('r', function() { return 10; });
+  .append("circle")
+  .attr("cx", function(d) {
+    return d[0];
+  })
+  .attr("cy", function(d) {
+    return d[1];
+  })
+  .attr("r", function() {
+    return 10;
+  });
 ```
 
 If you refresh the page, you should see a black dot in the center of the svg! By default, the dots will have a black fill (we'll learn how to customize this later).
 
-Let's add some more coordinates to the `data` array. 
+Let's add some more coordinates to the `data` array.
 
 ```js
-var data = [ [250, 250], [0, 0], [100, 150], [400, 200], [700, 250] ];
+var data = [[250, 250], [0, 0], [100, 150], [400, 200], [700, 250]];
 ```
 
 When you refresh the page, there may be a few things that surprise you. Here are some things to observe:
 
-1. The point at (0, 0) corresponds to the _upper_-left corner of the svg, not the _lower_-left, as it usually does when you set up coordinates in math class. Values increase from left to right horizontally, but from top to bottom vertically. 
-2. Just because the center of the dot fits in the svg, doesn't mean the entire dot will. For example, the dot at (0, 0) gets cropped by the edges of the svg so that you only see part of it.
-3. If the center of the dot is outside the bounds of the svg, it may not show up at all! Notice that there are five elements in the `data` array, but only four dots appearing on the svg. The dot with a `cx` value of `700` sits outside the bounds of the svg and isn't visible.
+1.  The point at (0, 0) corresponds to the _upper_-left corner of the svg, not the _lower_-left, as it usually does when you set up coordinates in math class. Values increase from left to right horizontally, but from top to bottom vertically.
+2.  Just because the center of the dot fits in the svg, doesn't mean the entire dot will. For example, the dot at (0, 0) gets cropped by the edges of the svg so that you only see part of it.
+3.  If the center of the dot is outside the bounds of the svg, it may not show up at all! Notice that there are five elements in the `data` array, but only four dots appearing on the svg. The dot with a `cx` value of `700` sits outside the bounds of the svg and isn't visible.
 
 Of all of these problems, the third one is the biggest. Very often you'll have data that exists over a large range of numbers, but you'll want to fit them into a reasonably-sized svg. In cases like this, what you'd like to have is a way to scale your data to a more reasonable size.
 
@@ -313,13 +328,15 @@ Don't worry, `d3`s got your back. It comes equipped with a variety of [scale](ht
 To specify a scale, you need to specify a domain and a range. `d3` will then take care of mapping points in the domain to points in the range. For example, for the data set above, we could create an _x_ scale and a _y_ scale as follows:
 
 ```js
-var xScale = d3.scaleLinear()
+var xScale = d3
+  .scaleLinear()
   .domain([0, 1000])
   .range([0, width]);
 
-var yScale = d3.scaleLinear()
+var yScale = d3
+  .scaleLinear()
   .domain([0, 500])
-  .range([height, 0]);  
+  .range([height, 0]);
 ```
 
 Note that `xScale` maps `[0, 1000]` to `[0, width]`, but `yScale` maps `[0, 500]` to `[height, 0`]; in particular, 0 gets mapped to 0 for the `x` scale, but to `height` for the `y` scale. This has the effect of flipping the coordinates so that (0, 0) is in the lower-left corner of the svg, which is the common orientation in math and makes plotting points a bit more straightforward.
@@ -327,13 +344,20 @@ Note that `xScale` maps `[0, 1000]` to `[0, width]`, but `yScale` maps `[0, 500]
 One you've set up the scales, you'll also need to be sure to use them when you plot the points. Next we need to modify the `cx` and `cy` attributes:
 
 ```js
-svg.selectAll('circle')
+svg
+  .selectAll("circle")
   .data(data)
   .enter()
-  .append('circle')
-    .attr('cx', function(d) { return xScale(d[0]); })
-    .attr('cy', function(d) { return yScale(d[1]); })
-    .attr('r', function() { return 10; });
+  .append("circle")
+  .attr("cx", function(d) {
+    return xScale(d[0]);
+  })
+  .attr("cy", function(d) {
+    return yScale(d[1]);
+  })
+  .attr("r", function() {
+    return 10;
+  });
 ```
 
 Notice that with these adjustments, all five points are visible on the svg. However, we're assuming that all points will have an x coordinate between 0 and 1000, and a y coordinate between 0 and 500. This may not be true, especially if we're planning on adding data later on. A better approach would be to base the domains on the max and min of our data set. Thankfully, `d3` has us covered here too: it has built-in max and min functions. So we can rewrite our scales as follows:
@@ -355,13 +379,15 @@ var yMax = d3.max(data, function(d) {
   return d[1];
 });
 
-var xScale = d3.scaleLinear()
-               .domain([xMin, xMax])
-               .range([0, width]);
+var xScale = d3
+  .scaleLinear()
+  .domain([xMin, xMax])
+  .range([0, width]);
 
-var yScale = d3.scaleLinear()
-               .domain([yMin, yMax])
-               .range([height, 0]);  
+var yScale = d3
+  .scaleLinear()
+  .domain([yMin, yMax])
+  .range([height, 0]);
 ```
 
 As a result of this change, however, even more points get cut off from the edge of the svg. To fix this, we can introduce some padding to the scale:
@@ -369,13 +395,15 @@ As a result of this change, however, even more points get cut off from the edge 
 ```js
 var padding = 10;
 
-var xScale = d3.scaleLinear()
-               .domain([xMin, xMax])
-               .range([padding, width - padding]);
+var xScale = d3
+  .scaleLinear()
+  .domain([xMin, xMax])
+  .range([padding, width - padding]);
 
-var yScale = d3.scaleLinear()
-               .domain([yMin, yMax])
-               .range([height - padding, padding]); 
+var yScale = d3
+  .scaleLinear()
+  .domain([yMin, yMax])
+  .range([height - padding, padding]);
 ```
 
 Things should look better now. Let's explore some more interesting data.
@@ -390,7 +418,7 @@ To begin, let's replace our array of coordinates by just setting `data` equal to
 var data = movies;
 ```
 
-Next, we need to decide what we want to plot. for now, let's plot total earnings on the y axis, and days open on the x axis. This means we need to update our code to reference these two properties: 
+Next, we need to decide what we want to plot. for now, let's plot total earnings on the y axis, and days open on the x axis. This means we need to update our code to reference these two properties:
 
 ```js
 var xMin = d3.min(data, function(d) {
@@ -411,39 +439,58 @@ var yMax = d3.max(data, function(d) {
 
 var padding = 10;
 
-var xScale = d3.scaleLinear()
-               .domain([xMin, xMax])
-               .range([padding, width - padding]);
+var xScale = d3
+  .scaleLinear()
+  .domain([xMin, xMax])
+  .range([padding, width - padding]);
 
-var yScale = d3.scaleLinear()
-               .domain([yMin, yMax])
-               .range([height - padding, padding]);               
+var yScale = d3
+  .scaleLinear()
+  .domain([yMin, yMax])
+  .range([height - padding, padding]);
 
-svg.selectAll('circle')
+svg
+  .selectAll("circle")
   .data(data)
   .enter()
-  .append('circle')
-    .attr('cx', function(d) { return xScale(d.daysOpen); })
-    .attr('cy', function(d) { return yScale(d.total); })
-    .attr('r', function() { return 10; });
+  .append("circle")
+  .attr("cx", function(d) {
+    return xScale(d.daysOpen);
+  })
+  .attr("cy", function(d) {
+    return yScale(d.total);
+  })
+  .attr("r", function() {
+    return 10;
+  });
 ```
 
 So far so good. Now let's adjust the color of each dot based on its freshness. We can actually do this by creating another scale!
 
 ```js
-var colorScale = d3.scaleLinear()
-                   .domain([0,1])
-                   .range(['green', 'red']);
-                   
-svg.selectAll('circle')
+var colorScale = d3
+  .scaleLinear()
+  .domain([0, 1])
+  .range(["green", "red"]);
+
+svg
+  .selectAll("circle")
   .data(data)
   .enter()
-  .append('circle')
-  .attr('cx', function(d) { return xScale(d.daysOpen); })
-  .attr('cy', function(d) { return yScale(d.total); })
-  .attr('r', function() { return 10; })
-  .attr('fill', function(d) { return colorScale(d.freshness); })
-  .attr('stroke', 'black');
+  .append("circle")
+  .attr("cx", function(d) {
+    return xScale(d.daysOpen);
+  })
+  .attr("cy", function(d) {
+    return yScale(d.total);
+  })
+  .attr("r", function() {
+    return 10;
+  })
+  .attr("fill", function(d) {
+    return colorScale(d.freshness);
+  })
+  .attr("stroke", "black");
 ```
 
 Our color scale converts freshness ratings to colors: a movie with 0% freshness will be green, a movie with 100% freshness will be red, and anything in between will be colored accordingly. The `fill` attribute determines the color of the circle, while the `stroke` attribute determines the color of its outline.
