@@ -8,6 +8,7 @@ By the end of this tutorial, you should be able to:
 
 * Bind data to elements (including elements that aren't on the page yet!)
 * Append new elements in the page that are tied to data
+* Draw simple geometric shapes on an SVG element
 * Scale your data to fit on the page
 * Create a scatterplot using `d3`
 
